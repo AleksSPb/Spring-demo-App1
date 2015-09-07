@@ -1,9 +1,7 @@
 package com.springapp.mvc.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-/**
- * Created by aleks on 07.09.2015.
- */
+
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer{
     @Override
     protected Class<?>[] getRootConfigClasses() {
