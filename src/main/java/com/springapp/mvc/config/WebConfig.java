@@ -12,19 +12,22 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.springapp.mvc")
-public class WebConfig extends WebMvcConfigurerAdapter{
+@ComponentScan({"com.springapp.mvc.controller"})
+public class WebConfig extends WebMvcConfigurerAdapter {
+    public WebConfig() {
+    }
 
     @Bean
-    public  InternalResourceViewResolver setupViewResolver() {
-        InternalResourceViewResolver resolver=new InternalResourceViewResolver();
+    public InternalResourceViewResolver setupViewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setPrefix("/WEB-INF/pages/");
         resolver.setSuffix(".jsp");
-        //resolver.setViewClass(JstlView.class);
         return resolver;
     }
 
-    @Bean(name = "messageSource")
+    @Bean(
+            name = {"messageSource"}
+    )
     public ReloadableResourceBundleMessageSource getMessageSource() {
         ReloadableResourceBundleMessageSource resource = new ReloadableResourceBundleMessageSource();
         resource.setBasename("classpath:messages");
