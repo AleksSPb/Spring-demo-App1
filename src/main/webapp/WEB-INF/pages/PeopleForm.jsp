@@ -18,18 +18,18 @@
 </head>
 
 <body>
-<h2>Customer SignUp Form - JSR303 @Valid example</h2>
+<h2>Форма ввода данных</h2>
 
-<form:form method="POST" commandName="customer" action="/signup">
+<form:form method="POST" commandName="people" action="/check">
   <form:errors path="*" cssClass="errorblock" element="div" />
   <table>
     <tr>
-      <td>Customer Name :</td>
+      <td>Имя :</td>
       <td><form:input path="name" /></td>
       <td><form:errors path="name" cssClass="error" /></td>
     </tr>
     <tr>
-      <td>Customer Age :</td>
+      <td>Возраст :</td>
       <td><form:input path="age" /></td>
       <td><form:errors path="age" cssClass="error" /></td>
     </tr>

@@ -23,7 +23,7 @@ public class HelloController {
     )
     public String displayGetNameAge(@Valid People people, BindingResult result, RedirectAttributes redirectAttributes) {
         if(result.hasErrors()) {
-            return "form1";
+            return "PeopleForm";
         } else {
             redirectAttributes.addFlashAttribute("name", people.getName());
             redirectAttributes.addFlashAttribute("age", Integer.valueOf(people.getAge()));
@@ -42,8 +42,8 @@ public class HelloController {
     @RequestMapping(
             method = {RequestMethod.GET}
     )
-    public String displayNameAndAgeForm(ModelMap model) {
+    public String displayPeopleForm(ModelMap model) {
         model.addAttribute("people", new People());
-        return "form1";
+        return "PeopleForm";
     }
 }
