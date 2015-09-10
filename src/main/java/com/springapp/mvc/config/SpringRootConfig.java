@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
-@ComponentScan({"com.springapp.mvc"})
+@ComponentScan("com.springapp.mvc")
 @Configuration
 public class SpringRootConfig {
     @Autowired
