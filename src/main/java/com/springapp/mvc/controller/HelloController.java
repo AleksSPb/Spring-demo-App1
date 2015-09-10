@@ -41,7 +41,9 @@ public class HelloController {
             return "PeopleForm";
         } else {
             Map namedParameters = new HashMap();
-            String sql = "INSERT INTO PEOPLES( \"NAME\", \"AGE\" )VALUES (  '" + people.getName()+"',"+people.getAge()+")";
+            String sql = "INSERT INTO PEOPLES( \"NAME\", \"AGE\" )VALUES ( :pName, :pAge)";
+            namedParameters.put("pName",people.getName());
+            namedParameters.put("pAge",people.getAge());
             namedParameterJdbcTemplate.update(sql,namedParameters);
             redirectAttributes.addFlashAttribute("name", people.getName());
             redirectAttributes.addFlashAttribute("age", Integer.valueOf(people.getAge()));
@@ -72,7 +74,7 @@ public class HelloController {
     public String displayPeoples(ModelMap model) {
         Map<String, Object> params = new HashMap<String, Object>();
 
-        String sql = "SELECT * FROM peoples";
+        String sql = "SELECT ID, NAME, AGE FROM peoples";
 
         List<People> result = namedParameterJdbcTemplate.query(sql, params, new PeopleMapper());
         model.addAttribute("peoples", result);
