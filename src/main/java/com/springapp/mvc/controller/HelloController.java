@@ -17,12 +17,16 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.springapp.mvc.dao.PeopleDAO;
 
 
 @Controller
 @RequestMapping({"/"})
 public class HelloController {
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    
+    @Autowired
+	PeopleDAO peopleDao;
 
     public HelloController() {
     }
@@ -40,11 +44,7 @@ public class HelloController {
         if(result.hasErrors()) {
             return "PeopleForm";
         } else {
-            Map namedParameters = new HashMap();
-            String sql = "INSERT INTO PEOPLES( \"NAME\", \"AGE\" )VALUES ( :pName, :pAge)";
-            namedParameters.put("pName",people.getName());
-            namedParameters.put("pAge",people.getAge());
-            namedParameterJdbcTemplate.update(sql,namedParameters);
+            peopleDao.insert(people);
             redirectAttributes.addFlashAttribute("name", people.getName());
             redirectAttributes.addFlashAttribute("age", Integer.valueOf(people.getAge()));
             return "redirect:/printValue";
@@ -72,22 +72,9 @@ public class HelloController {
             method = {RequestMethod.GET}
     )
     public String displayPeoples(ModelMap model) {
-        Map<String, Object> params = new HashMap<String, Object>();
 
-        String sql = "SELECT ID, NAME, AGE FROM peoples";
-
-        List<People> result = namedParameterJdbcTemplate.query(sql, params, new PeopleMapper());
-        model.addAttribute("peoples", result);
+        model.addAttribute("peoples", peopleDao.findAll());
         return "printDB";
     }
-    private static final class PeopleMapper implements RowMapper<People> {
-
-        public People mapRow(ResultSet rs, int rowNum) throws SQLException {
-            People people = new People();
-            people.setId(rs.getInt("id"));
-            people.setName(rs.getString("name"));
-            people.setAge(rs.getInt("age"));
-            return people;
-        }
-    }
+    
 }
