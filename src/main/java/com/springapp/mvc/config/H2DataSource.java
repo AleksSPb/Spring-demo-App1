@@ -22,14 +22,11 @@ public class H2DataSource {
 
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.H2).build();
-                //.addScript("db/create-db.sql").addScript("db/insert-data.sql").build();
-
         return db;
 
     }
 
-   
-    // Start WebServer, access http://localhost:8082
+  
     @Bean(initMethod = "start", destroyMethod = "stop")
     public Server startDBManager() throws SQLException {
         return Server.createWebServer();
