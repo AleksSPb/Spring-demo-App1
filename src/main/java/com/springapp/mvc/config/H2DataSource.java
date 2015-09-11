@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import liquibase.Liquibase;
 import org.h2.tools.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,11 +21,14 @@ public class H2DataSource {
     public DataSource dataSource() {
 
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-        EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.H2).addScript("db/create-db.sql").addScript("db/insert-data.sql").build();
+        EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.H2).build();
+                //.addScript("db/create-db.sql").addScript("db/insert-data.sql").build();
+
         return db;
 
     }
 
+   
     // Start WebServer, access http://localhost:8082
     @Bean(initMethod = "start", destroyMethod = "stop")
     public Server startDBManager() throws SQLException {
