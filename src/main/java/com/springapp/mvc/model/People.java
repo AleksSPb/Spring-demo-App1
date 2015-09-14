@@ -14,8 +14,6 @@ public class People {
 
     private Integer id;
 
-    @SafeHtml( whitelistType = WhiteListType.NONE )//This whitelist allows only text nodes: all HTML will be stripped.
-    @NotBlank
     @Size(min=2, max=50)
     private String name;
 

@@ -1,5 +1,6 @@
 package com.springapp.mvc.controller;
 
+import com.springapp.mvc.config.HtmlEscapeStringEditor;
 import com.springapp.mvc.model.People;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
@@ -18,6 +19,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.springapp.mvc.dao.PeopleDAO;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 
 
 @Controller
@@ -77,4 +82,8 @@ public class HelloController {
         return "printDB";
     }
     
+@InitBinder
+public void initBinder(WebDataBinder binder) {
+    binder.registerCustomEditor(String.class, new HtmlEscapeStringEditor());
+}
 }
