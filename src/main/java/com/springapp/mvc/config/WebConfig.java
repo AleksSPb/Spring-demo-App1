@@ -1,5 +1,6 @@
 package com.springapp.mvc.config;
 
+//import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"com.springapp.mvc.controller"})
+@ComponentScan({"com.springapp.mvc"})
 public class WebConfig extends WebMvcConfigurerAdapter {
     public WebConfig() {
     }

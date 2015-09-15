@@ -1,10 +1,9 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.mvc.config.HtmlEscapeStringEditor;
-import com.springapp.mvc.model.People;
+import com.springapp.mvc.dao.People;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -13,33 +12,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import com.springapp.mvc.dao.PeopleDAO;
-import javax.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.ServletRequestDataBinder;
+import com.springapp.mvc.dao.PeopleRepository;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+
+
 
 
 @Controller
 @RequestMapping({"/"})
 public class HelloController {
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    //NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     
     @Autowired
-	PeopleDAO peopleDao;
+	PeopleRepository peopleRep;
 
     public HelloController() {
     }
 
-    @Autowired
+  /*  @Autowired
     public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate=namedParameterJdbcTemplate;
-    }
+    }*/
 
     @RequestMapping(
             value = {"/check"},
@@ -49,7 +43,7 @@ public class HelloController {
         if(result.hasErrors()) {
             return "PeopleForm";
         } else {
-            peopleDao.insert(people);
+            peopleRep.save(people);
             redirectAttributes.addFlashAttribute("name", people.getName());
             redirectAttributes.addFlashAttribute("age", Integer.valueOf(people.getAge()));
             return "redirect:/printValue";
@@ -78,7 +72,7 @@ public class HelloController {
     )
     public String displayPeoples(ModelMap model) {
 
-        model.addAttribute("peoples", peopleDao.findAll());
+        model.addAttribute("peoples", peopleRep.findAll());
         return "printDB";
     }
     

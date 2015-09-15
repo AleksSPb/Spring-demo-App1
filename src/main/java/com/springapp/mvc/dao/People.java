@@ -1,4 +1,4 @@
-package com.springapp.mvc.model;
+package com.springapp.mvc.dao;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
@@ -29,6 +29,13 @@ public class People {
     @NotNull @Min(1) @Max(150)
     private Integer age;
 
+    public People() {}
+    
+    public People(String name, Integer age)   {
+        this.name=name;
+        this.age=age;
+    }
+    
     @Override
     public String toString() {
         return "People{id=" + id +", name='" + name + '\'' +", age=" + age +'}';

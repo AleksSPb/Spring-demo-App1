@@ -1,17 +1,14 @@
 package com.springapp.mvc.config;
 
 import java.sql.SQLException;
-
 import javax.sql.DataSource;
-
-import liquibase.Liquibase;
 import org.h2.tools.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+
 
 @Configuration
 public class H2DataSource {
@@ -23,7 +20,6 @@ public class H2DataSource {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.H2).build();
         return db;
-
     }
 
   
