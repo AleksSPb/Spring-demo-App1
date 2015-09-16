@@ -8,10 +8,8 @@
     <name>Spring-demo-App1</name>
 
     <properties>
-        <spring.version>4.1.1.RELEASE</spring.version>
+        <spring.version>4.2.1.RELEASE</spring.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jettyVersion>9.3.1-SNAPSHOT</jettyVersion>
-        <jetty.version>9.3.0.M1</jetty.version>
     </properties>
 
     <dependencies>
@@ -71,16 +69,11 @@
             <version>5.2.1.Final</version>
         </dependency>
         
-    <dependency>
-      <groupId>javax.persistence</groupId>
-      <artifactId>persistence-api</artifactId>
-      <version>1.0</version>
-    </dependency>
     
     <dependency>
         <groupId>org.springframework.data</groupId>
         <artifactId>spring-data-jpa</artifactId>
-        <version>1.0.2.RELEASE</version>
+        <version>1.9.0.RELEASE</version>
     </dependency>
     
         <dependency>
@@ -108,10 +101,25 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
-
+                <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.0.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.0.1.Final</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
     <build>
@@ -147,7 +155,7 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.3.4.RC0</version>
+                <version>9.3.3.v20150827</version>
                 <configuration>
                     <stopKey>STOP</stopKey>
                     <stopPort>9999</stopPort>

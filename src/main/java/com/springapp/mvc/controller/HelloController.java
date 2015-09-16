@@ -1,7 +1,9 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.mvc.config.HtmlEscapeStringEditor;
-import com.springapp.mvc.dao.People;
+import com.springapp.mvc.model.People;
+import com.springapp.mvc.repository.PeopleRepository;
+import com.springapp.mvc.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -12,12 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import com.springapp.mvc.dao.PeopleRepository;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-
-
-
 
 @Controller
 @RequestMapping({"/"})
@@ -25,7 +24,7 @@ public class HelloController {
     //NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     
     @Autowired
-	PeopleRepository peopleRep;
+private PeopleRepository peopleRep;
 
     public HelloController() {
     }
