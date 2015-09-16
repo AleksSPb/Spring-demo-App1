@@ -4,7 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="Peoples")
@@ -12,7 +15,7 @@ public class People implements java.io.Serializable{
 
     @Id
     @GeneratedValue
-    private Integer id;
+     private long id;
 
     @Size(min=2, max=50)
     private String name;
@@ -32,11 +35,11 @@ public class People implements java.io.Serializable{
         return "People{id=" + id +", name='" + name + '\'' +", age=" + age +'}';
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 

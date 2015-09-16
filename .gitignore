@@ -1,3 +1,4 @@
 # Настройки Idea
 .idea
 *.iml
+nb-configuration.xml

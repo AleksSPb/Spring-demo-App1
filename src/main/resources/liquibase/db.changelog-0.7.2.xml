@@ -12,7 +12,7 @@
         <sql>
             CREATE TABLE peoples
             (
-            id    INTEGER PRIMARY KEY auto_increment,
+            id    LONG PRIMARY KEY auto_increment,
             name VARCHAR(50),
             age INTEGER
             )
