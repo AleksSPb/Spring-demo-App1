@@ -1,4 +1,3 @@
-
 package com.springapp.mvc.config;
 
 
@@ -12,14 +11,14 @@ import javax.sql.DataSource;
 @Configuration
 public class LiquibaseConfig {
 
-    public static final String DEFAULT_CLASSPATH_LOCATION = "classpath:liquibase/db.changelog-master.xml";
+    private static final String DEFAULT_CLASSPATH_LOCATION = "classpath:liquibase/db.changelog-master.xml";
     @Autowired
-    DataSource dataSource;
+    DataSource emDb;
 
     @Bean
     public SpringLiquibase springLiquibase() {
         SpringLiquibase springLiquibase = new SpringLiquibase();
-        springLiquibase.setDataSource(dataSource);
+        springLiquibase.setDataSource(emDb);
         springLiquibase.setChangeLog(DEFAULT_CLASSPATH_LOCATION);
         return springLiquibase;
     }

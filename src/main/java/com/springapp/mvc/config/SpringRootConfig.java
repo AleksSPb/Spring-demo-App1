@@ -1,18 +1,11 @@
 package com.springapp.mvc.config;
 
-import org.hibernate.jpa.HibernatePersistenceProvider;
-import org.hsqldb.util.DatabaseManagerSwing;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
-import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
-import java.util.Properties;
 
 //import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 //import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -22,17 +15,15 @@ import java.util.Properties;
 @EnableJpaRepositories("com.springapp.mvc.repository")
 public class SpringRootConfig {
     @Autowired
-    DataSource dataSource;
+	DataSource emDb;
 
-	@Bean
+	/*@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactoryBean.setDataSource(dataSource);
 		entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
 		entityManagerFactoryBean.setPackagesToScan("com.springapp.mvc");
-		
 		entityManagerFactoryBean.setJpaProperties(hibProperties());
-		
 		return entityManagerFactoryBean;
 	}
 
@@ -56,5 +47,5 @@ public class SpringRootConfig {
 
         DatabaseManagerSwing.main(new String[] { "--url", "jdbc:h2:mem:testdb", "--user", "sa", "--password", "" });
 
-    }
+    }*/
 }

@@ -2,10 +2,11 @@ package com.springapp.mvc.service;
 
 import com.springapp.mvc.model.People;
 import com.springapp.mvc.repository.PeopleRepository;
-import java.util.List;
-import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class PeopleServiceImpl implements PeopleService{
@@ -16,8 +17,8 @@ public class PeopleServiceImpl implements PeopleService{
     @Override
     @Transactional
     public People create(People people) {
-        People createdPeople=people;
-        return peopleRepository.save(createdPeople);
+
+        return peopleRepository.save(people);
     }
     
     @Override
