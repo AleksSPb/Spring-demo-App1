@@ -12,11 +12,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-
 import java.util.Properties;
-
-//import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-//import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
 @ComponentScan("com.springapp.mvc")
@@ -42,10 +38,8 @@ public class JpaConfig implements DisposableBean {
         entityManagerFactoryBean.setDataSource(h2InMemory());
         entityManagerFactoryBean.setPackagesToScan("com.springapp.mvc");
         entityManagerFactoryBean.setPersistenceUnitName("MyPU");
-//		entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
         HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
         entityManagerFactoryBean.setJpaVendorAdapter(va);
-
         entityManagerFactoryBean.setJpaProperties(hibProperties());
         entityManagerFactoryBean.afterPropertiesSet();
         return entityManagerFactoryBean;
@@ -71,10 +65,6 @@ public class JpaConfig implements DisposableBean {
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
-    /*	@PostConstruct
-    public void startDBManager() {
-        DatabaseManagerSwing.main(new String[]{"--url", "jdbc:h2:mem:testdb", "--user", "sa", "--password", ""});
-    }*/
 
     @Override
     public void destroy() {
@@ -83,6 +73,5 @@ public class JpaConfig implements DisposableBean {
 
         }
     }
-
 
 }

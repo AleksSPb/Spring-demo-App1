@@ -1,11 +1,9 @@
 package com.springapp.mvc.config;
 
-
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import javax.sql.DataSource;
 
 @Configuration
@@ -22,5 +20,4 @@ public class LiquibaseConfig {
         springLiquibase.setChangeLog(DEFAULT_CLASSPATH_LOCATION);
         return springLiquibase;
     }
-
 }
