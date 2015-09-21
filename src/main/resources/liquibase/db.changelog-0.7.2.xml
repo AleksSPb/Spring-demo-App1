@@ -10,7 +10,7 @@
             Create peoples table
         </comment>
         <createTable tableName="peoples">
-            <column name="id" type="long" autoIncrement="true">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(50)">
