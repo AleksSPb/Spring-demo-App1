@@ -26,8 +26,8 @@ public class People implements java.io.Serializable{
     public People() {}
     
     public People(String name, Integer age)   {
-        this.name=name;
-        this.age=age;
+        this.name = name;
+        this.age = age;
     }
     
     @Override
