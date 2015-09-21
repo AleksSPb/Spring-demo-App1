@@ -18,18 +18,13 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping({"/"})
 public class HelloController {
-    //NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    
+
     @Autowired
     private PeopleService peopleRep;
 
     public HelloController() {
     }
 
-  /*  @Autowired
-    public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        this.namedParameterJdbcTemplate=namedParameterJdbcTemplate;
-    }*/
 
     @RequestMapping(
             value = {"/"},
