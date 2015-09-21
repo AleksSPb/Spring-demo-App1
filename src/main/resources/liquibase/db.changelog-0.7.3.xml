@@ -3,19 +3,35 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <changeSet id="0.7.3" author="paraleksi@gmail.com">
         <comment>
-            Внесение людей
+            Insert peoples
         </comment>
-        <sql>INSERT INTO peoples ( "NAME", "AGE" ) VALUES ('mkyong', 56)</sql>
-        <sql>INSERT INTO peoples ( "NAME", "AGE" ) VALUES ('aleksSpb', 35)</sql>
-        <sql>INSERT INTO peoples ( "NAME", "AGE" ) VALUES ('Vlad', 14)</sql>    
-    <rollback> 
-      DELETE FROM Person WHERE name LIKE 'mkyong'; 
-      DELETE FROM Person WHERE name LIKE 'aleksSpb'; 
-      DELETE FROM Person WHERE name LIKE 'Vlad'; 
+        <insert tableName="peoples">
+            <column name="name" value="mkyong"></column>
+            <column name="age" value="56"></column>
+        </insert>
+        <insert tableName="peoples">
+            <column name="name" value="aleksSpb"></column>
+            <column name="age" value="35"></column>
+        </insert>
+        <insert tableName="peoples">
+            <column name="name" value="Vlad"></column>
+            <column name="age" value="14"></column>
+        </insert>
+
+        <rollback>
+            <delete tableName="peoples">
+                <where>name LIKE 'mkyong'</where>
+            </delete>
+            <delete tableName="peoples">
+                <where>name LIKE 'aleksSpb'</where>
+            </delete>
+            <delete tableName="peoples">
+                <where>name LIKE 'Vlad'</where>
+            </delete>
     </rollback>
   </changeSet>
 </databaseChangeLog>

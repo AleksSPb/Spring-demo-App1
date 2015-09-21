@@ -3,20 +3,23 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <changeSet id="0.7.2" author="paraleksi@gmail.com">
         <comment>
-            Создание таблицы людей
+            Create peoples table
         </comment>
-        <sql>
-            CREATE TABLE peoples
-            (
-            id    LONG PRIMARY KEY auto_increment,
-            name VARCHAR(50),
-            age INTEGER
-            )
-        </sql>
+        <createTable tableName="peoples">
+            <column name="id" type="long" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
     </changeSet>
 
 </databaseChangeLog>
