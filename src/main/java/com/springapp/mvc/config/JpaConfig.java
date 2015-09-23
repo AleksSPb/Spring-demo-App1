@@ -22,6 +22,14 @@ public class JpaConfig implements DisposableBean {
 
     private static final String DEFAULT_CLASSPATH_LOCATION = "classpath:liquibase/db.changelog.xml";
 
+    private static Properties hibProperties() {
+        Properties properties = new Properties();
+        properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+        properties.put("hibernate.show_sql", "true");
+        properties.put("hibernate.id.new_generator_mappings", "false");
+        return properties;
+    }
+
     @Bean(name = "h2InMemory")
     public EmbeddedDatabase h2InMemory() {
             EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
@@ -48,14 +56,6 @@ public class JpaConfig implements DisposableBean {
         entityManagerFactoryBean.setJpaProperties(hibProperties());
         entityManagerFactoryBean.afterPropertiesSet();
         return entityManagerFactoryBean;
-    }
-
-    private Properties hibProperties() {
-        Properties properties = new Properties();
-        properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-        properties.put("hibernate.show_sql", "true");
-        properties.put("hibernate.id.new_generator_mappings", "false");
-        return properties;
     }
 
     @Bean
