@@ -41,7 +41,7 @@ public class JpaConfig implements DisposableBean {
 
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(h2InMemory());
-        entityManagerFactoryBean.setPackagesToScan("com.springapp.mvc");
+        entityManagerFactoryBean.setPackagesToScan("com.springapp.mvc.model");
         entityManagerFactoryBean.setPersistenceUnitName("MyPU");
         HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
         entityManagerFactoryBean.setJpaVendorAdapter(va);
