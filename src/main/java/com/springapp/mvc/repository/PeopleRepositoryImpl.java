@@ -4,8 +4,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class PeopleRepositoryImpl {
-    public Integer getInt()
+
+    public String toString()
     {
-        return 10;
+        return "PeopleRepositoryImpl";
     }
 }
