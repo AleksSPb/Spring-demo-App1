@@ -9,28 +9,17 @@
         <comment>
             Insert peoples
         </comment>
-        <insert tableName="peoples">
-            <column name="name" value="mkyong"></column>
-            <column name="age" value="56"></column>
-        </insert>
-        <insert tableName="peoples">
-            <column name="name" value="aleksSpb"></column>
-            <column name="age" value="35"></column>
-        </insert>
-        <insert tableName="peoples">
-            <column name="name" value="Vlad"></column>
-            <column name="age" value="14"></column>
-        </insert>
+        <loadData tableName="peoples" encoding="UTF-8" file="liquibase/peoples_data.csv"></loadData>
 
         <rollback>
             <delete tableName="peoples">
-                <where>name LIKE 'mkyong'</where>
+                <where>name='mkyong'</where>
             </delete>
             <delete tableName="peoples">
-                <where>name LIKE 'aleksSpb'</where>
+                <where>name='aleksSpb'</where>
             </delete>
             <delete tableName="peoples">
-                <where>name LIKE 'Vlad'</where>
+                <where>name='Vlad'</where>
             </delete>
     </rollback>
   </changeSet>
