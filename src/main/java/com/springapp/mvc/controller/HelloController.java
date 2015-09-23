@@ -20,17 +20,16 @@ import javax.validation.Valid;
 public class HelloController {
 
     @Autowired
-    private PeopleService peopleRep;
+    private PeopleService peopleRepository;
 
     public HelloController() {
     }
-
 
     @RequestMapping(
             value = {"/"},
             method = {RequestMethod.GET}
     )
-    public String displayHello(ModelMap model) {
+    public String displayHello() {
         return "hello";
     }
 
@@ -42,7 +41,7 @@ public class HelloController {
         if(result.hasErrors()) {
             return "PeopleForm";
         } else {
-            peopleRep.create(people);
+            peopleRepository.create(people);
             redirectAttributes.addFlashAttribute("name", people.getName());
             redirectAttributes.addFlashAttribute("age", people.getAge());
             return "redirect:/printValue";
@@ -53,7 +52,7 @@ public class HelloController {
             value = {"/printValue"},
             method = {RequestMethod.GET}
     )
-    public String displayResult(ModelMap model) {
+    public String displayResult() {
         return "printValue";
     }
 
@@ -72,7 +71,7 @@ public class HelloController {
     )
     public String displayPeoples(ModelMap model) {
 
-        model.addAttribute("peoples", peopleRep.getAll());
+        model.addAttribute("peoples", peopleRepository.getAll());
         return "printDB";
     }
     
