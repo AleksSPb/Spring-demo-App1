@@ -1,5 +1,6 @@
 package com.springapp.mvc.config;
 
+import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,16 +20,20 @@ import java.util.Properties;
 @EnableJpaRepositories("com.springapp.mvc.repository")
 public class JpaConfig implements DisposableBean {
 
-    private EmbeddedDatabase emDb;
+    private static final String DEFAULT_CLASSPATH_LOCATION = "classpath:liquibase/db.changelog.xml";
 
     @Bean(name = "h2InMemory")
     public EmbeddedDatabase h2InMemory() {
-
-        if (this.emDb == null) {
             EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-            this.emDb = builder.setType(EmbeddedDatabaseType.H2).build();
-        }
-        return this.emDb;
+        return builder.setType(EmbeddedDatabaseType.H2).build();
+    }
+
+    @Bean
+    public SpringLiquibase springLiquibase() {
+        SpringLiquibase springLiquibase = new SpringLiquibase();
+        springLiquibase.setDataSource(h2InMemory());
+        springLiquibase.setChangeLog(DEFAULT_CLASSPATH_LOCATION);
+        return springLiquibase;
     }
 
     @Bean
@@ -68,8 +73,8 @@ public class JpaConfig implements DisposableBean {
 
     @Override
     public void destroy() {
-        if (this.emDb != null) {
-            this.emDb.shutdown();
+        if (this.h2InMemory() != null) {
+            this.h2InMemory().shutdown();
 
         }
     }
