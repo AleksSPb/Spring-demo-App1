@@ -18,14 +18,15 @@ import java.util.Properties;
 @Configuration
 @ComponentScan("com.springapp.mvc")
 @EnableJpaRepositories("com.springapp.mvc.repository")
-public class JpaConfig implements DisposableBean {
+public class JpaConfig {
 
-    private static final String DEFAULT_CLASSPATH_LOCATION = "classpath:liquibase/db.changelog.xml";
+//    private static final String DEFAULT_CLASSPATH_LOCATION = "classpath:liquibase/db.changelog.xml";
 
     private static Properties hibProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         properties.put("hibernate.show_sql", "true");
+        properties.put("hibernate.id.new_generator_mappings", "false");
         return properties;
     }
 
@@ -35,14 +36,14 @@ public class JpaConfig implements DisposableBean {
         return builder.setType(EmbeddedDatabaseType.H2).build();
     }
 
-    @Bean
-    public SpringLiquibase springLiquibase() {
-        SpringLiquibase springLiquibase = new SpringLiquibase();
-        springLiquibase.setDataSource(h2InMemory());
-        springLiquibase.setChangeLog(DEFAULT_CLASSPATH_LOCATION);
-        return springLiquibase;
-    }
-
+    /*    @Bean
+        public SpringLiquibase springLiquibase() {
+            SpringLiquibase springLiquibase = new SpringLiquibase();
+            springLiquibase.setDataSource(h2InMemory());
+            springLiquibase.setChangeLog(DEFAULT_CLASSPATH_LOCATION);
+            return springLiquibase;
+        }
+    */
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 
@@ -70,11 +71,10 @@ public class JpaConfig implements DisposableBean {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-    @Override
+
     public void destroy() {
         if (this.h2InMemory() != null) {
             this.h2InMemory().shutdown();
-
         }
     }
 
