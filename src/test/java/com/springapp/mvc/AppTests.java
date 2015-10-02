@@ -20,11 +20,10 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @WebAppConfiguration
 @ContextConfiguration(classes = {WebConfig.class})
 public class AppTests {
-    private MockMvc mockMvc;
-
     @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     protected WebApplicationContext wac;
+    private MockMvc mockMvc;
 
     @Before
     public void setup() {
@@ -36,5 +35,12 @@ public class AppTests {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("hello"));
+        mockMvc.perform(get("/getDB"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("printDB"));
+        mockMvc.perform(get("/addPeople"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("PeopleForm"));
     }
+
 }
